@@ -1,19 +1,29 @@
-from agents.requirement_agent import requirement_agent
-from agents.query_agent import query_agent
-from agents.analyst_agent import analyst_agent
-
-def main():
-
-    question = input("What would you like to analyze? ")
-
-    requirements = requirement_agent(question)
-
-    # Retrieve data using query agent
-
-    # Analyze data using analyst agent
-
-    # Display final report
+from graph.workfow import app
 
 
-if __name__ == "__main__":
-    main()
+question = input("\nWhat would you like to analyze? ")
+
+initial_state = {
+    "user_question": question,
+    "Query": "",
+    "is_valid": False,
+    "validation_error": "",
+    "retry_count": 0,
+    "final_response": ""
+}
+
+result = app.invoke(initial_state)
+
+print("\n========== FINAL RESULT ==========\n")
+
+if result["is_valid"]:
+    print("Generated SQL:")
+    print(result["Query"])
+
+    print("\nQuery Explanation:")
+    print(result["final_response"])
+
+else:
+    print("Unable to generate valid SQL after the maximum attempts.")
+    print("Last validation error:")
+    print(result["validation_error"])

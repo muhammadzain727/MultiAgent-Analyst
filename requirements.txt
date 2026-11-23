@@ -1,2 +1,11 @@
-psycopg2-binary>=2.9.9
-python-dotenv>=1.0.1
+langchain
+langchain-openai
+langgraph
+mcp
+sqlalchemy
+psycopg2-binary
+pandas
+python-dotenv
+matplotlib
+pydantic
+openai
